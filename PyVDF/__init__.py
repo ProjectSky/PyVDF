@@ -14,7 +14,7 @@ class PyVDF:
   __OutputIndentation = "\t"
   __OutputSpacing = "\t\t"
   __CondensedOutput = False
-  __MaxTokenLength = 1200
+  __MaxTokenLength = 99999 # Why limit to the 1200 line?
 
   __ERR_BadToken = "Bad token on line {}.\n Possible Newline or Token greater than {} character in length"
   __ERR_BlockNoKey = "Value block without a Key at line {}.\n Last Token: {}"
@@ -108,7 +108,7 @@ class PyVDF:
       pass
 
     try:
-      with open(f, 'r') as filec:
+      with open(f, 'r', encoding='utf-8') as filec: #Fix 'UnicodeDecodeError' issue.
         data = PyVDF.reads(filec.read())
         filec.close()
         return data
@@ -276,7 +276,7 @@ class PyVDF:
       pass
 
     try:
-      filec = open(f, 'w')
+      filec = open(f, 'w', encoding='uft-8')
       filec.write(data)
       filec.close()
     except IOError as e:
