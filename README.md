@@ -27,3 +27,12 @@ Foo = PyVDF(data=StringOData)
 Foo = PyVDF(infile="/path/to/file.ext")
 Foo = PyVDF(infile=fileInstance)
 ```
+
+## edit
+```python
+from PyVDF import PyVDF
+vdf = PyVDF()
+file = vdf.load('path/file.vdf')
+vdf.edit('foo.id', 'value')
+vdf.write_file('path/foo.vdf')
+```
